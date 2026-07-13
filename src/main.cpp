@@ -48,7 +48,11 @@ int main(){
   bool running = true;
   std::map<std::string, int> timer;
   int time = 0;
-  int time_print = 20;
+  int time_print;
+  int time_exit;
+  std::cout << "Enter time (minutes), to print your statistic and time to exit (format: 'time1', 'time2'): ";
+  std::cin >> time_print;
+  std::cin >> time_exit;
 
 
   while (running){
@@ -69,11 +73,25 @@ int main(){
     }
 
     time++;
-    if (time ==  time_print) for (const auto& name : timer) {std::cout << name.first << " : " << name.second << std::endl;};
+    if (time ==  time_print && time != time_exit) {
+      std::cout << "========================= STATISTIC =========================\n\n";
+      for (const auto& name : timer) {
+        std::cout << name.first << " : " << name.second << std::endl;
+      }
+    }
+
+    if (time == time_exit){
+      std::cout << "========================= STATISTIC =========================\n\n";
+      for (const auto& name : timer) {
+        std::cout << name.first << " : " << name.second << std::endl;
+      }
+      break;
+
+    }
     Sleep(1000);
   }
 
 
-
+  std::cout << "Thank's for using my program! \nMy another projects: https://github.com/MIrrox27?tab=repositories";
   return 0;
 }
