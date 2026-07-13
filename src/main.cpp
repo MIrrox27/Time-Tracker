@@ -50,10 +50,10 @@ int main(){
   int time = 0;
   int time_print;
   int time_exit;
-  std::cout << "Enter time (minutes), to print your statistic and time to exit (format: 'time1', 'time2'): ";
+  std::cout << "Enter time (ms), to print your statistic and time to exit (format: 'time1', 'time2'): ";
   std::cin >> time_print;
   std::cin >> time_exit;
-
+  
 
   while (running){
     HWND hwnd = GetForegroundWindow();
