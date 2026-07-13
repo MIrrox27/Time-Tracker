@@ -17,7 +17,28 @@ std::string lower(std::string text){
   return text;
 }
 
-std::string clear_name(std::string str){}
+std::string clear_name(std::string str){
+  str.erase(std::remove_if(str.begin(), str.end(), [](unsigned char c) {
+    return !std::isalnum(c) && c != ' '; 
+  }), str.end());
+
+  std::string browsers[] = {
+    "Google Chrome", "Mozilla Firefox", "Microsoft Edge",
+    "Opera", "Brave", "Vivaldi", 
+    "Tor Browser", "Yandex Browser", "Duck Duck Go"
+  };
+
+  
+
+  for (const auto& b : browsers){
+    if (lower(str).find(lower(b)) != std::string::npos){
+      str = b;
+      break;
+    }
+  }
+  return str;
+
+}
 
 
 int main(){
