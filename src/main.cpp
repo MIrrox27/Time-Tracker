@@ -7,7 +7,18 @@
 #include <string> 
 #include <fstream>
 #include <chrono>
+#include <algorithm>
 #include <clocale>
+
+std::string lower(std::string text){
+  std::transform(text.begin(), text.end(), text.begin(), [](unsigned char c) {
+    return std::tolower(c);
+  });
+  return text;
+}
+
+std::string clear_name(std::string str){}
+
 
 int main(){
   setlocale(LC_ALL, "Russian");
@@ -24,6 +35,7 @@ int main(){
       GetWindowTextA(hwnd, buffer, sizeof(buffer));
       //std::cout << buffer << std::endl;
       std::string window_name = buffer;
+      window_name = clear_name(window_name);
 
       if (timer.count(window_name) > 0){
         timer[window_name]++;
@@ -34,13 +46,10 @@ int main(){
     }
 
     time++;
-    if (time ==  time_exit) break;
+    if (time ==  time_exit) for (const auto& name : timer) {std::cout << name.first << " : " << name.second << std::endl;};
     Sleep(1000);
   }
-  
-  for (const auto& name : timer) {
-    std::cout << name.first << " : " << name.second << std::endl;
-  }
+
 
 
   return 0;
