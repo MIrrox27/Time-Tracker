@@ -50,7 +50,7 @@ int main(){
   int time = 0;
   int time_print;
   int time_exit;
-  std::cout << "Enter time (ms), to print your statistic and time to exit (format: 'time1', 'time2'): ";
+  std::cout << "Enter time (sec), to print your statistic and time to exit (format: 'time1 time2'): ";
   std::cin >> time_print;
   std::cin >> time_exit;
   
@@ -78,6 +78,7 @@ int main(){
       for (const auto& name : timer) {
         std::cout << name.first << " : " << name.second << std::endl;
       }
+      time_print *= 2;
     }
 
     if (time == time_exit){
