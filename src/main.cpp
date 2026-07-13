@@ -48,7 +48,7 @@ int main(){
   bool running = true;
   std::map<std::string, int> timer;
   int time = 0;
-  int time_exit = 20;
+  int time_print = 20;
 
 
   while (running){
@@ -69,7 +69,7 @@ int main(){
     }
 
     time++;
-    if (time ==  time_exit) for (const auto& name : timer) {std::cout << name.first << " : " << name.second << std::endl;};
+    if (time ==  time_print) for (const auto& name : timer) {std::cout << name.first << " : " << name.second << std::endl;};
     Sleep(1000);
   }
 
