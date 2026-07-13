@@ -18,16 +18,12 @@ std::string lower(std::string text){
 }
 
 std::string clear_name(std::string str){
-  str.erase(std::remove_if(str.begin(), str.end(), [](unsigned char c) {
-    return !std::isalnum(c) && c != ' '; 
-  }), str.end());
 
-  std::string browsers[] = {
+    std::string browsers[] = {
     "Google Chrome", "Mozilla Firefox", "Microsoft Edge",
     "Opera", "Brave", "Vivaldi", 
     "Tor Browser", "Yandex Browser", "Duck Duck Go"
   };
-
   
 
   for (const auto& b : browsers){
@@ -36,6 +32,12 @@ std::string clear_name(std::string str){
       break;
     }
   }
+/*
+  str.erase(std::remove_if(str.begin(), str.end(), [](unsigned char c) {
+    return !std::isalnum(c) && c != ' '; 
+  }), str.end());
+*/
+
   return str;
 
 }
