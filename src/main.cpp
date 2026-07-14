@@ -17,6 +17,14 @@ std::string lower(std::string text){
   return text;
 }
 
+bool is_special_or_space(const std::string& str) {
+    if (str.empty()) return false; // Пустая строка не содержит спецсимволов
+
+    return std::all_of(str.begin(), str.end(), [](unsigned char c) {
+        return std::ispunct(c) || std::isspace(c);
+    });
+}
+
 std::string clear_name(std::string str){
 
     std::string browsers[] = {
@@ -32,11 +40,14 @@ std::string clear_name(std::string str){
       break;
     }
   }
-/*
+
   str.erase(std::remove_if(str.begin(), str.end(), [](unsigned char c) {
     return !std::isalnum(c) && c != ' '; 
   }), str.end());
-*/
+
+  if (is_special_or_space(str)){
+    str = "Other";
+  }
 
   return str;
 
@@ -84,7 +95,7 @@ int main(){
     if (time == time_exit){
       std::cout << "========================= STATISTIC =========================\n\n";
       for (const auto& name : timer) {
-        std::cout << name.first << " : " << name.second << std::endl;
+        std::cout << name.first << " : " << name.second << " sec" << std::endl;
       }
       break;
 
