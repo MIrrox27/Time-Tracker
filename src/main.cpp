@@ -41,9 +41,9 @@ std::string clear_name(std::string str){
     }
   }
 
-  str.erase(std::remove_if(str.begin(), str.end(), [](unsigned char c) {
+  /*str.erase(std::remove_if(str.begin(), str.end(), [](unsigned char c) {
     return !std::isalnum(c) && c != ' '; 
-  }), str.end());
+  }), str.end());*/
 
   if (is_special_or_space(str)){
     str = "Other";
