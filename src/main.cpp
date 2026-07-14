@@ -60,7 +60,8 @@ std::string sec_to_hours(int sec){
     " hours, ", " minutes, ", " seconds, "};
 
   result = std::to_string(sec / 3600) + " hours, " + std::to_string(sec % 3600 / 60) + " minutes, " + std::to_string((sec % 3600) % 60) + " seconds";
-  /*
+
+/*
   result.push_back(sec / 3600); // кол-во часов
   result.push_back(hms[0]);
   result.push_back((sec % 3600) / 60); // кол-во минут
@@ -82,6 +83,8 @@ int main(){
   std::cout << "Enter time (sec), to print your statistic and time to exit (format: 'time1 time2'): ";
   std::cin >> time_print;
   std::cin >> time_exit;
+
+  int time_step = time_print;
   
 
   while (running){
@@ -103,15 +106,15 @@ int main(){
 
     time++;
     if (time ==  time_print && time != time_exit) {
-      std::cout << "========================= STATISTIC =========================\n\n";
+      std::cout << "\n\n========================= STATISTIC =========================\n\n";
       for (const auto& name : timer) {
         std::cout << name.first << " : " << sec_to_hours(name.second) << std::endl;
       }
-      time_print *= 2;
+      time_print += time_step;
     }
 
     if (time == time_exit){
-      std::cout << "========================= STATISTIC =========================\n\n";
+      std::cout << "\n\n========================= STATISTIC =========================\n\n";
       for (const auto& name : timer) {
         std::cout << name.first << " : " << sec_to_hours(name.second) << std::endl;
       }
