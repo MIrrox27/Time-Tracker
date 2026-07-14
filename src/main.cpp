@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <clocale>
 
+
 std::string lower(std::string text){
   std::transform(text.begin(), text.end(), text.begin(), [](unsigned char c) {
     return std::tolower(c);
@@ -50,7 +51,22 @@ std::string clear_name(std::string str){
   }
 
   return str;
+}
 
+std::string sec_to_hours(int sec){
+  std::string result;
+
+  std::string hms = {
+    " hours, ", " minutes, ", " seconds, "};
+
+  result.push_back(sec / 3600); // кол-во часов
+  result.push_back(hms[0]);
+  result.push_back((sec % 3600) / 60); // кол-во минут
+  result.push_back(hms[1]);
+  result.push_back((sec % 3600) % 60); // секунды
+  result.push_back(hms[2]);
+
+  return result;
 }
 
 
@@ -87,7 +103,7 @@ int main(){
     if (time ==  time_print && time != time_exit) {
       std::cout << "========================= STATISTIC =========================\n\n";
       for (const auto& name : timer) {
-        std::cout << name.first << " : " << name.second << std::endl;
+        std::cout << name.first << " : " << sec_to_hours(name.second) << std::endl;
       }
       time_print *= 2;
     }
@@ -95,15 +111,15 @@ int main(){
     if (time == time_exit){
       std::cout << "========================= STATISTIC =========================\n\n";
       for (const auto& name : timer) {
-        std::cout << name.first << " : " << name.second << " sec" << std::endl;
+        std::cout << name.first << " : " << sec_to_hours(name.second) << std::endl;
       }
-      break;
+      running = false;
 
     }
     Sleep(1000);
   }
 
 
-  std::cout << "Thank's for using my program! \nMy other projects: https://github.com/MIrrox27?tab=repositories";
+  std::cout << "\n --- Thank's for using my program! \n --- My other projects: https://github.com/MIrrox27?tab=repositories";
   return 0;
 }
