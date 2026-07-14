@@ -60,21 +60,27 @@ std::string sec_to_hours(int sec){
     " hours, ", " minutes, ", " seconds, "};
 
   result = std::to_string(sec / 3600) + " hours, " + std::to_string(sec % 3600 / 60) + " minutes, " + std::to_string((sec % 3600) % 60) + " seconds";
-
-/*
-  result.push_back(sec / 3600); // кол-во часов
-  result.push_back(hms[0]);
-  result.push_back((sec % 3600) / 60); // кол-во минут
-  result.push_back(hms[1]);
-  result.push_back((sec % 3600) % 60); // секунды
-  result.push_back(hms[2]);
-*/
   return result;
 }
 
 
+bool is_AFK(int max_seconds){
+
+  LASTINPUTINFO lii;
+  lii.cbSize = sizeof(LASTINPUTINFO);
+
+  if (GetLastInputInfo(&lii)){
+    DWORD idleTime = (GetTickCount64() - lii.dwTime) / 1000;
+
+    if (idleTime >= max_seconds){
+      return true;
+    }
+    return false;
+  }
+  return false; 
+}
+
 int main(){
-  setlocale(LC_ALL, "Russian");
   bool running = true;
   std::map<std::string, int> timer;
   int time = 0;
@@ -96,6 +102,7 @@ int main(){
       std::string window_name = buffer;
       window_name = clear_name(window_name);
 
+      
       if (timer.count(window_name) > 0){
         timer[window_name]++;
       }
@@ -119,7 +126,6 @@ int main(){
         std::cout << name.first << " : " << sec_to_hours(name.second) << std::endl;
       }
       running = false;
-
     }
     Sleep(1000);
   }
