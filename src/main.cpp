@@ -93,6 +93,6 @@ int main(){
   }
 
 
-  std::cout << "Thank's for using my program! \nMy another projects: https://github.com/MIrrox27?tab=repositories";
+  std::cout << "Thank's for using my program! \nMy other projects: https://github.com/MIrrox27?tab=repositories";
   return 0;
 }
