@@ -56,16 +56,18 @@ std::string clear_name(std::string str){
 std::string sec_to_hours(int sec){
   std::string result;
 
-  std::string hms = {
+  std::string hms[] = {
     " hours, ", " minutes, ", " seconds, "};
 
+  result = std::to_string(sec / 3600) + " hours, " + std::to_string(sec % 3600 / 60) + " minutes, " + std::to_string((sec % 3600) % 60) + " seconds";
+  /*
   result.push_back(sec / 3600); // кол-во часов
   result.push_back(hms[0]);
   result.push_back((sec % 3600) / 60); // кол-во минут
   result.push_back(hms[1]);
   result.push_back((sec % 3600) % 60); // секунды
   result.push_back(hms[2]);
-
+*/
   return result;
 }
 
