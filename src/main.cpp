@@ -28,15 +28,68 @@ bool is_special_or_space(const std::string& str) {
 }
 
 std::string clear_name(std::string str){
+std::string apps[] = {
+    
+    "Google Chrome", "Chrome",
+    "Mozilla Firefox", "Firefox",
+    "Microsoft Edge", "Edge",
+    "Opera",
+    "Brave",
+    "Vivaldi",
+    "Tor Browser", "Tor",
+    "Yandex Browser", "Яндекс Браузер",
+    "DuckDuckGo", "Duck Duck Go",
 
-    std::string browsers[] = {
-    "Google Chrome", "Mozilla Firefox", "Microsoft Edge",
-    "Opera", "Brave", "Vivaldi", 
-    "Tor Browser", "Yandex Browser", "Duck Duck Go"
-  };
+    
+    "Visual Studio Code", "VS Code", "Code - OSS",
+    "Visual Studio",
+    "IntelliJ IDEA", "IDEA",
+    "PyCharm",
+    "WebStorm",
+    "Sublime Text", "Sublime",
+    "Notepad++", "Notepad plus",
+    "Android Studio",
+
+    
+    "Windows Terminal", "Terminal",
+    "Command Prompt", "cmd.exe",
+    "PowerShell", "powershell.exe",
+
+    
+    "File Explorer", "Explorer", "Проводник",
+
+    
+    "Discord",
+    "Slack",
+    "Telegram",
+    "WhatsApp",
+    "Zoom",
+    "Microsoft Teams", "Teams",
+
+   
+    "Microsoft Word", "Word",
+    "Microsoft Excel", "Excel",
+    "Microsoft PowerPoint", "PowerPoint",
+    "Outlook",
+
+    
+    "VLC", "VideoLAN",
+    "Media Player Classic", "MPC-HC",
+    "Spotify",
+
+    
+    "Adobe Photoshop", "Photoshop",
+    "Adobe Premiere", "Premiere",
+
+    
+    "GitHub Desktop",
+    "Figma",
+    "Blender",
+    "Unity"
+};
   
 
-  for (const auto& b : browsers){
+  for (const auto& b : apps){
     if (lower(str).find(lower(b)) != std::string::npos){
       str = b;
       break;
@@ -54,6 +107,7 @@ std::string clear_name(std::string str){
   return str;
 }
 
+
 std::string sec_to_hours(int sec){
   std::string result;
 
@@ -66,7 +120,6 @@ std::string sec_to_hours(int sec){
 
 
 bool is_AFK(int max_seconds){
-
   LASTINPUTINFO lii;
   lii.cbSize = sizeof(LASTINPUTINFO);
 
@@ -81,6 +134,7 @@ bool is_AFK(int max_seconds){
   return false; 
 }
 
+
 int main(){
   bool running = true;
   std::map<std::string, int> timer;
@@ -90,7 +144,6 @@ int main(){
   std::cout << "Enter time (sec), to print your statistic and time to exit (format: 'time1 time2'): ";
   std::cin >> time_print;
   std::cin >> time_exit;
-
   int time_step = time_print;
   
 
@@ -103,7 +156,6 @@ int main(){
       std::string window_name = buffer;
       window_name = clear_name(window_name);
 
-      
       if (timer.count(window_name) > 0){
         timer[window_name]++;
       }
@@ -111,6 +163,7 @@ int main(){
         timer[window_name] = 1;
       }      
     }
+
 
     time++;
     std::time_t t = std::time(nullptr);
