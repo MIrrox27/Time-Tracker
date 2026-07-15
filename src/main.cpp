@@ -115,15 +115,16 @@ int main(){
     time++;
     std::time_t t = std::time(nullptr);
     if (time ==  time_print && time != time_exit) {
-      std::cout << "\n\n=================== STATISTIC " << std::ctime(&t) <<  " ===================\n\n";
+      std::cout << "\n\n=================== STATISTIC" <<  " ===================\n" << " --- "<< std::ctime(&t) << std::endl;
       for (const auto& name : timer) {
         std::cout << name.first << " : " << sec_to_hours(name.second) << std::endl;
       }
       time_print += time_step;
     }
 
+
     if (time == time_exit){
-      std::cout << "\n\n=================== (END) STATISTIC " << std::ctime(&t) <<  " ===================\n\n";
+      std::cout << "\n\n=================== (END) STATISTIC" <<  " ===================\n" << " --- "<< std::ctime(&t) << std::endl;
       for (const auto& name : timer) {
         std::cout << name.first << " : " << sec_to_hours(name.second) << std::endl;
       }
