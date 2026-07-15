@@ -1,10 +1,11 @@
 # Time-Tracker
-Simple time tracker for follow your screen time
+Simple time tracker for your screen time.
 
 
 ## Build and Run
 
 ### Requirements
+ - Windows 10/11
  - Compiler GCC 
  - CMake (Optional)
 
