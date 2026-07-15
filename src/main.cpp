@@ -9,6 +9,7 @@
 #include <chrono>
 #include <algorithm>
 #include <clocale>
+#include <ctime>
 
 
 std::string lower(std::string text){
@@ -112,8 +113,9 @@ int main(){
     }
 
     time++;
+    std::time_t t = std::time(nullptr);
     if (time ==  time_print && time != time_exit) {
-      std::cout << "\n\n========================= STATISTIC =========================\n\n";
+      std::cout << "\n\n=================== STATISTIC " << std::ctime(&t) <<  " ===================\n\n";
       for (const auto& name : timer) {
         std::cout << name.first << " : " << sec_to_hours(name.second) << std::endl;
       }
@@ -121,7 +123,7 @@ int main(){
     }
 
     if (time == time_exit){
-      std::cout << "\n\n========================= STATISTIC =========================\n\n";
+      std::cout << "\n\n=================== (END) STATISTIC " << std::ctime(&t) <<  " ===================\n\n";
       for (const auto& name : timer) {
         std::cout << name.first << " : " << sec_to_hours(name.second) << std::endl;
       }
@@ -130,7 +132,7 @@ int main(){
     Sleep(1000);
   }
 
-  
+
   std::cout << "\n --- Thank's for using my program! \n --- My other projects: https://github.com/MIrrox27?tab=repositories";
   return 0;
 }
