@@ -130,7 +130,7 @@ int main(){
     Sleep(1000);
   }
 
-
+  
   std::cout << "\n --- Thank's for using my program! \n --- My other projects: https://github.com/MIrrox27?tab=repositories";
   return 0;
 }
